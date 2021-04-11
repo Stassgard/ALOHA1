@@ -1,0 +1,36 @@
+<html>
+<main class="main columns">
+  <section class="column main-column">
+    <div class="columns">
+      <div class="column nested-column">
+        <div class="article">
+          <header class="header">
+            <h1>{{ newsService.title3 }}</h1>
+            <h2>{{newsService.newsDate | date:'longDate': 'null':'ru' }}</h2>
+          </header>
+          <figure class="article-image is-16by9">
+            <img src="assets/img1.jpg" alt="">
+          </figure>
+          <div class="article-body">
+            <h2 class="article-title">
+              {{ newsService.title3 }}
+            </h2>
+            <p class="article-content">
+              {{ newsService.text3 }}
+              {{ newsService.text3 }}
+              <br><br>
+              {{ newsService.text3 }}
+              {{ newsService.text3 }}
+            </p>
+            <!--            <footer class="article-info">-->
+            <!--                            <span>{{ newsService.author }}</span>-->
+            <!--              <span>{{newsService.newsDate | date:'longDate': 'null':'ru' }}</span>-->
+            <!--            </footer>-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+</html>
+

@@ -1,0 +1,6 @@
+[
+    {"email" : "test@test.com", "subtype" : "Каждый день"},
+    {"email" : "eng@test.com", "subtype" : "Один раз в месяц"},
+    {"email" : "ger@test.com", "subtype" : "Каждый день"},
+    {"email" : "pol@test.com", "subtype" : "Каждый день"}
+]

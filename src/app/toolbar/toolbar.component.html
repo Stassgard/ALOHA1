@@ -1,0 +1,28 @@
+<mat-toolbar>
+
+  <button mat-icon-button class="example-icon1" aria-label="Example icon-button with menu icon">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <a class="aloha" routerLink='**'><span>ALOHA</span></a>
+  <div class="logo-cont">
+    <p></p>
+  </div>
+<!--  <img class="logo-img" src="assets/logo.png" alt="">-->
+  <span class="example-spacer"></span>
+  <button mat-icon-button [matMenuTriggerFor]="person" class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    <mat-icon>person</mat-icon>
+  </button>
+  <mat-menu #person="matMenu">
+    <button mat-menu-item (click)="LogIn()">
+      <mat-icon>login</mat-icon>
+      <span>Login</span>
+    </button>
+    <button mat-menu-item (click)="LogOut()">
+      <mat-icon>sensor_door</mat-icon>
+      <span>Logout</span>
+    </button>
+  </mat-menu>
+  <button mat-icon-button class="example-icon2"  aria-label="Example icon-button with share icon">
+    <mat-icon>favorite</mat-icon>
+  </button>
+</mat-toolbar>
