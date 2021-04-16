@@ -165,6 +165,12 @@
       <div class="article-body">
         <h2 class="article-title">
           {{newsService.placeholderTitle}}
+          <div *ngIf="areNewsLoaded$ | async">
+            <div *ngFor="let newss of (selectNews$ | async)">
+              {{newss.id}}
+            </div>
+          </div>
+          
         </h2>
         <p class="article-content">
           {{newsService.placeholderText}}

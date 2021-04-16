@@ -1,12 +1,12 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NewsService {
-  GetSomeNews() {
-    
-  }
+  
   public title1 = 'Университетский мобильный оператор появится в Томске уже к 1 августа'
   public text1 = 'Томский госуниверситет (ТГУ) первым в РФ получит лицензию мобильного оператора для реализации проекта "Юнивермобайл", рассчитанного на обслуживание всех студентов и преподавателей Томска; проект реализуется совместно с Tele2 и будет запущен не позднее августа 2020 года, сообщает в пятницу ТАСС.'
   public title2 = 'Томские студенты разработали концепт университетского оператора связи на сети Tele2'
@@ -18,6 +18,23 @@ export class NewsService {
   public author = 'Станислав Ижик'
   public newsDate: Date = new Date()
 
-  constructor() {}
+  constructor(private readonly _http: HttpClient) {}
+
+  // getNews() {
+  //   return this._http.get<[]>('../news/news.json')
+  // }
+
+  // getNewsAsObs() {
+  //   return of(this.getNews())
+  // }
+
+  GetSomeNews() {
+    return [{ "id": 1 },{ "id": 2 }];
+  }
+
+  getNewsAsObs() {
+    return of(this.GetSomeNews());
+  }
+
 
 }

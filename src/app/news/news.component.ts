@@ -3,6 +3,10 @@ import {NewsService} from "../services/news.service";
 import {FormBuilder, FormControl, Validators, FormGroup} from "@angular/forms";
 import subscriptions from "../news/subscriptions.json";
 import value from '../news/subscriptions.json';
+import { selectNews, areNewsLoaded } from 'src/store/selectors/news.selectors';
+import { NewsState } from 'src/store/reducers/news.reducer';
+import { LoadNews } from 'src/store/actions/news.actions';
+import { Store } from '@ngrx/store';
 
 interface SubscriptionType {
   value: string;
@@ -28,9 +32,15 @@ export class NewsComponent implements OnInit {
     {value: 'Один раз в месяц', viewValue: 'Один раз в месяц'},
   ];
 
-  constructor(public newsService: NewsService, private formBuilder:FormBuilder) {}
+  selectNews$ = this.store.select(selectNews);
+  areNewsLoaded$ = this.store.select(areNewsLoaded);
+
+  constructor(public newsService: NewsService, private formBuilder:FormBuilder, private store: Store<NewsState>) {}
 
   ngOnInit(): void {
+
+    // Dispatch action
+    this.store.dispatch(LoadNews());
 
     this.subscriptionForm = this.formBuilder.group({
       email: ['', [

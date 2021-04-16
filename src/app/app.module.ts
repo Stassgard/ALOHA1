@@ -25,6 +25,10 @@ import {MatOptionModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
 import { MatCardModule} from "@angular/material/card";
 import { NewsService } from './services/news.service';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { NewsEffects } from 'src/store/effects/news.effects';
+import { newsFeatureKey, newsReducer } from 'src/store/reducers/news.reducer';
 
 
 registerLocaleData(localeRu,'ru')
@@ -57,6 +61,9 @@ registerLocaleData(localeRu,'ru')
     MatOptionModule,
     MatSelectModule,
     MatCardModule,
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([NewsEffects]),
+    StoreModule.forFeature(newsFeatureKey, newsReducer)
   ],
   providers: [NewsService],
   bootstrap: [AppComponent]

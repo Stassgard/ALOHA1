@@ -7,7 +7,7 @@ import { NewsService } from "../../app/services/news.service";
 
 @Injectable()
 export class NewsEffects {
-    loadNews$ = createEffect(() => this.actions$.pipe(
+    loadNews$ = createEffect( () => this.actions$.pipe(
         ofType(LoadNews),
         mergeMap( () => this.newsService.getNewsAsObs()
         .pipe(

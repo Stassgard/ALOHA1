@@ -9,11 +9,11 @@ export interface NewsState {
 }
 
 export const initialState: NewsState = {
-    news: [{ id: 1 }],
+    news: [{ id: 2 }],
     loaded: false
-}
+};
 
-const _NewsReducer = createReducer(
+const _newsReducer = createReducer(
     initialState,
     on(LoadNews, state => {
         return { ...state, loaded: false }
@@ -23,8 +23,8 @@ const _NewsReducer = createReducer(
     })
 );
 
-export function newsReducer(state, action) {
-    return _NewsReducer(state, action);
+export function newsReducer(state: any, action: any) {
+    return _newsReducer(state, action);
 }
 
-export const getNewsState = createFeatureSelector(newsFeatureKey)
+export const getNewsState = createFeatureSelector(newsFeatureKey);
