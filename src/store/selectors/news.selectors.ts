@@ -10,3 +10,4 @@ export const areNewsLoaded = createSelector(
     getNewsState,
         (state: NewsState) => state.loaded
 );
+

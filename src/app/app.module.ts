@@ -29,6 +29,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { NewsEffects } from 'src/store/effects/news.effects';
 import { newsFeatureKey, newsReducer } from 'src/store/reducers/news.reducer';
+import { HttpClientModule } from '@angular/common/http';
 
 
 registerLocaleData(localeRu,'ru')
@@ -63,7 +64,8 @@ registerLocaleData(localeRu,'ru')
     MatCardModule,
     StoreModule.forRoot({}),
     EffectsModule.forRoot([NewsEffects]),
-    StoreModule.forFeature(newsFeatureKey, newsReducer)
+    StoreModule.forFeature(newsFeatureKey, newsReducer),
+    HttpClientModule
   ],
   providers: [NewsService],
   bootstrap: [AppComponent]
