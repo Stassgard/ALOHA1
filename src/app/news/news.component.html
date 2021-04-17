@@ -164,12 +164,19 @@
     <a class="article" href="#">
       <div class="article-body">
         <h2 class="article-title">
-          {{newsService.placeholderTitle}}
+          {{newsService.placeholderTitle}}2
+
           <div *ngIf="areNewsLoaded$ | async">
-            <div *ngFor="let newss of (selectNews$ | async)">
-              {{newss.id}}
+            <div *ngFor="let news of (selectNews$ | async)">
+              {{news.title}}
+              {{news.text}}
             </div>
           </div>
+
+          <!-- <div class="shipping-item" *ngFor="let newss of newsData | async">
+            <span>{{ newss.title }}</span>
+            <span>{{ newss.text  }}</span>
+          </div> -->
           
         </h2>
         <p class="article-content">
