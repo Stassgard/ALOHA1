@@ -9,7 +9,7 @@ import { NewsService } from "../../app/services/news.service";
 export class NewsEffects {
     loadNews$ = createEffect( () => this.actions$.pipe(
         ofType(LoadNews),
-        mergeMap( () => this.newsService.getNewsAsObs()
+        mergeMap( () => this.newsService.getNews()
         .pipe(
             map( news => {
              return LoadNewsSuccess( { news: news })
@@ -21,3 +21,5 @@ export class NewsEffects {
 
 constructor(private actions$: Actions, private newsService: NewsService) {}
 }
+
+// on 12 replased getNewsAsObs for getNews

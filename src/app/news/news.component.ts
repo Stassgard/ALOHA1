@@ -32,6 +32,8 @@ export class NewsComponent implements OnInit {
     {value: 'Один раз в месяц', viewValue: 'Один раз в месяц'},
   ];
 
+  //newsData = this.newsService.getNews();
+
   selectNews$ = this.store.select(selectNews);
   areNewsLoaded$ = this.store.select(areNewsLoaded);
 
@@ -41,6 +43,12 @@ export class NewsComponent implements OnInit {
 
     // Dispatch action
     this.store.dispatch(LoadNews());
+
+    // this.newsService.getNewsAsObs().subscribe(news => {
+    //   console.log(news);
+    // });
+
+    //console.log(this.newsService.getNewsAsObs());
 
     this.subscriptionForm = this.formBuilder.group({
       email: ['', [

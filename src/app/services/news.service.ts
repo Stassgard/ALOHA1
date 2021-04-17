@@ -18,23 +18,23 @@ export class NewsService {
   public author = 'Станислав Ижик'
   public newsDate: Date = new Date()
 
-  constructor(private readonly _http: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
-  // getNews() {
-  //   return this._http.get<[]>('../news/news.json')
-  // }
-
-  // getNewsAsObs() {
-  //   return of(this.getNews())
-  // }
-
-  GetSomeNews() {
-    return [{ "id": 1 },{ "id": 2 }];
+  getNews() {
+    return this.http.get<{ title: string, text:string }[]>('/assets/news.json');
   }
 
   getNewsAsObs() {
-    return of(this.GetSomeNews());
+    return of(this.getNews())
   }
+
+  // GetSomeNews() {
+  //   return [{ "id": 1 },{ "id": 56 }];
+  // }
+
+  // getNewsAsObs() {
+  //   return of(this.GetSomeNews());
+  // }
 
 
 }
