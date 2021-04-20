@@ -14,7 +14,6 @@ import { NewsComponent } from './news/news.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import { ArticleComponent } from './article/article.component';
-import {LoginComponent} from "./login/login.component";
 import {MatMenuModule} from "@angular/material/menu";
 import { Article2Component } from './article2/article2.component';
 import { Article3Component } from './article3/article3.component';
@@ -40,7 +39,6 @@ registerLocaleData(localeRu,'ru')
     NewsComponent,
     ToolbarComponent,
     ArticleComponent,
-    LoginComponent,
     Article2Component,
     Article3Component
   ],

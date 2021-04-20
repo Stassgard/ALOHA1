@@ -4,12 +4,16 @@ import { LoadNews, LoadNewsSuccess } from "../actions/news.actions";
 export const newsFeatureKey = 'news';
 
 export interface NewsState {
-    news: { title: string, text: string }[],
+    news: any[],
+
+    // news: { title1: string, text1:string, title2: string, text2:string, title3: string, text3:string, placeholderTitle: string, placeholderText:string }[],
     loaded: boolean
 }
 
 export const initialState: NewsState = {
-    news: [{ title: "", text: "" }],
+    news: [{  }],
+
+    // news: [{ title1: "string", text1:"string", title2: "string", text2:"string", title3: "string", text3:"string", placeholderTitle: "string", placeholderText:"string" }],
     loaded: false
 };
 

@@ -4,28 +4,28 @@
     <div class="columns">
       <div class="column nested-column">
         <div class="article">
-          <header class="header">
-            <h1>{{ newsService.title1 }}</h1>
+          <header class="header" *ngIf="areNewsLoaded$ | async">
+              <h1 class="article-title" *ngFor="let news of (selectNews$ | async)">
+                {{news.title1}}
+              </h1>
             <h2>{{newsService.newsDate | date:'longDate': 'null':'ru' }}</h2>
           </header>
           <figure class="article-image is-16by9">
             <img src="assets/img2.jpg" alt="">
           </figure>
-          <div class="article-body">
-            <h2 class="article-title">
-              {{ newsService.title1 }}
-            </h2>
-            <p class="article-content">
-              {{ newsService.text2 }}
-              {{ newsService.text2 }}
-              <br><br>
-              {{ newsService.text2 }}
-              {{ newsService.text2 }}
-            </p>
-<!--            <footer class="article-info">-->
-<!--                            <span>{{ newsService.author }}</span>-->
-<!--              <span>{{newsService.newsDate | date:'longDate': 'null':'ru' }}</span>-->
-<!--            </footer>-->
+          <div class="article-body" *ngIf="areNewsLoaded$ | async"> 
+              <h2 class="article-title" *ngFor="let news of (selectNews$ | async)">
+                {{news.title2}}
+              </h2>
+              <p class="article-content" *ngFor="let news of (selectNews$ | async)">
+                {{news.text1}}
+                {{news.text1}}
+              </p>
+              <br>
+              <p class="article-content" *ngFor="let news of (selectNews$ | async)">
+                {{news.text1}}
+                {{news.text1}}
+              </p>
           </div>
         </div>
       </div>

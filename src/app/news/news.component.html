@@ -6,32 +6,6 @@
     <h1>ALOHA</h1>
     <h2>Read tutorial</h2>
 </header>
-
-<!--<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">-->
-
-<!--  <label>-->
-<!--    First Name:-->
-<!--    <input type="text" formControlName="firstName">-->
-<!--  </label>-->
-
-<!--  <label>-->
-<!--    Last Name:-->
-<!--    <input type="text" formControlName="lastName">-->
-<!--  </label>-->
-
-<!--  <button mat-flat-button color="primary" type="submit" [disabled]="!profileForm.valid">Submit</button>-->
-<!--</form>-->
-
-
-
-
-
-
-
-
-
-
-
 <main class="main columns">
   <section class="column main-column">
     <a class="article first-article" routerLink='/article'>
@@ -39,14 +13,17 @@
         <img src="assets/img2.jpg" alt="">
       </figure>
       <div class="article-body">
-        <h2 class="article-title">
-          {{ newsService.title1 }}
-        </h2>
-        <p class="article-content">
-          {{ newsService.text1 }}
-        </p>
+        <div *ngIf="areNewsLoaded$ | async">
+          <div *ngFor="let news of (selectNews$ | async)">
+            <h2 class="article-title">
+              {{news.title1}}
+            </h2>
+            <p class="article-content">
+              {{news.text1}}
+            </p>
+          </div>
+        </div>
         <footer class="article-info">
-          <!--          <span>{{ newsService.author }}</span>-->
           <span>{{newsService.newsDate | date:'longDate': 'null':'ru' }}</span>
         </footer>
       </div>
@@ -59,14 +36,17 @@
             <img src="assets/img4.jpg" alt="">
           </figure>
           <div class="article-body">
-            <h2 class="article-title">
-              {{ newsService.title2 }}
-            </h2>
-            <p class="article-content">
-              {{ newsService.text2 }}
-            </p>
+            <div *ngIf="areNewsLoaded$ | async">
+              <div *ngFor="let news of (selectNews$ | async)">
+                <h2 class="article-title">
+                  {{news.title2}}
+                </h2>
+                <p class="article-content">
+                  {{news.text2}}
+                </p>
+              </div>
+            </div>
             <footer class="article-info">
-              <!--              <span>{{ newsService.author }}</span>-->
               <span>{{newsService.newsDate | date:'longDate': 'null':'ru' }}</span>
             </footer>
           </div>
@@ -79,42 +59,51 @@
             <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/image-03-lo.jpg" alt="">
           </figure>
           <div class="article-body">
-            <h2 class="article-title">
-              {{newsService.placeholderTitle}}
-            </h2>
-            <p class="article-content">
-              {{newsService.placeholderText}}
-            </p>
+            <div *ngIf="areNewsLoaded$ | async">
+              <div *ngFor="let news of (selectNews$ | async)">
+                <h2 class="article-title">
+                  {{news.placeholderTitle}}
+                </h2>
+                <p class="article-content">
+                  {{news.placeholderText}}
+                </p>
+              </div>
+            </div>
             <footer class="article-info">
-              <!--              <span>{{ newsService.author }}</span>-->
               <span>{{newsService.newsDate | date:'longDate': 'null':'ru' }}</span>
             </footer>
           </div>
         </a>
         <a class="article" href="#">
           <div class="article-body">
-            <h2 class="article-title">
-              {{newsService.placeholderTitle}}
-            </h2>
-            <p class="article-content">
-              {{newsService.placeholderText}}
-            </p>
+            <div *ngIf="areNewsLoaded$ | async">
+              <div *ngFor="let news of (selectNews$ | async)">
+                <h2 class="article-title">
+                  {{news.placeholderTitle}}
+                </h2>
+                <p class="article-content">
+                  {{news.placeholderText}}
+                </p>
+              </div>
+            </div>
             <footer class="article-info">
-              <!--              <span>{{ newsService.author }}</span>-->
               <span>{{newsService.newsDate | date:'longDate': 'null':'ru' }}</span>
             </footer>
           </div>
         </a>
         <a class="article" href="#">
           <div class="article-body">
-            <h2 class="article-title">
-              {{newsService.placeholderTitle}}
-            </h2>
-            <p class="article-content">
-              {{newsService.placeholderText}}
-            </p>
+            <div *ngIf="areNewsLoaded$ | async">
+              <div *ngFor="let news of (selectNews$ | async)">
+                <h2 class="article-title">
+                  {{news.placeholderTitle}}
+                </h2>
+                <p class="article-content">
+                  {{news.placeholderText}}
+                </p>
+              </div>
+            </div>
             <footer class="article-info">
-              <!--              <span>{{ newsService.author }}</span>-->
               <span>{{newsService.newsDate | date:'longDate': 'null':'ru' }}</span>
             </footer>
           </div>
@@ -135,69 +124,68 @@
         <img src="assets/img1.jpg" alt="">
       </figure>
       <div class="article-body">
-        <h2 class="article-title">
-          {{newsService.title3}}
-        </h2>
-        <p class="article-content">
-          {{newsService.text3}}
-        </p>
-        <footer class="article-info">
-          <!--          <span>{{ newsService.author }}</span>-->
-          <span>{{newsService.newsDate | date:'longDate': 'null':'ru' }}</span>
-        </footer>
-      </div>
-    </a>
-    <a class="article" href="#">
-      <div class="article-body">
-        <h2 class="article-title">
-          {{newsService.placeholderTitle}}
-        </h2>
-        <p class="article-content">
-          {{newsService.placeholderText}}
-        </p>
-        <footer class="article-info">
-          <!--          <span>{{ newsService.author }}</span>-->
-          <span>{{newsService.newsDate | date:'longDate': 'null':'ru' }}</span>
-        </footer>
-      </div>
-    </a>
-    <a class="article" href="#">
-      <div class="article-body">
-        <h2 class="article-title">
-          {{newsService.placeholderTitle}}2
-
-          <div *ngIf="areNewsLoaded$ | async">
-            <div *ngFor="let news of (selectNews$ | async)">
-              {{news.title}}
-              {{news.text}}
-            </div>
+        <div *ngIf="areNewsLoaded$ | async">
+          <div *ngFor="let news of (selectNews$ | async)">
+            <h2 class="article-title">
+              {{news.title3}}
+            </h2>
+            <p class="article-content">
+              {{news.text3}}
+            </p>
           </div>
-
-          <!-- <div class="shipping-item" *ngFor="let newss of newsData | async">
-            <span>{{ newss.title }}</span>
-            <span>{{ newss.text  }}</span>
-          </div> -->
-          
-        </h2>
-        <p class="article-content">
-          {{newsService.placeholderText}}
-        </p>
+        </div>
         <footer class="article-info">
-          <!--          <span>{{ newsService.author }}</span>-->
           <span>{{newsService.newsDate | date:'longDate': 'null':'ru' }}</span>
         </footer>
       </div>
     </a>
     <a class="article" href="#">
       <div class="article-body">
-        <h2 class="article-title">
-          {{newsService.placeholderTitle}}
-        </h2>
-        <p class="article-content">
-          {{newsService.placeholderText}}
-        </p>
+        <div *ngIf="areNewsLoaded$ | async">
+          <div *ngFor="let news of (selectNews$ | async)">
+            <h2 class="article-title">
+              {{news.placeholderTitle}}
+            </h2>
+            <p class="article-content">
+              {{news.placeholderText}}
+            </p>
+          </div>
+        </div>
         <footer class="article-info">
-          <!--          <span>{{ newsService.author }}</span>-->
+          <span>{{newsService.newsDate | date:'longDate': 'null':'ru' }}</span>
+        </footer>
+      </div>
+    </a>
+    <a class="article" href="#">
+      <div class="article-body">
+        <div *ngIf="areNewsLoaded$ | async">
+          <div *ngFor="let news of (selectNews$ | async)">
+            <h2 class="article-title">
+              {{news.placeholderTitle}}
+            </h2>
+            <p class="article-content">
+              {{news.placeholderText}}
+            </p>
+          </div>
+        </div>
+        <footer class="article-info">
+          <span>{{newsService.newsDate | date:'longDate': 'null':'ru' }}</span>
+        </footer>
+      </div>
+    </a>
+    <a class="article" href="#">
+      <div class="article-body">
+        <div *ngIf="areNewsLoaded$ | async">
+          <div *ngFor="let news of (selectNews$ | async)">
+            <h2 class="article-title">
+              {{news.placeholderTitle}}
+            </h2>
+            <p class="article-content">
+              {{news.placeholderText}}
+            </p>
+          </div>
+        </div>
+        <footer class="article-info">
           <span>{{newsService.newsDate | date:'longDate': 'null':'ru' }}</span>
         </footer>
       </div>
@@ -227,8 +215,8 @@
           <mat-form-field class="full-width">
             <mat-label>Как часто вы хотите получать новости?</mat-label>
             <mat-select [(ngModel)]="selectedValue" formControlName="subtype" name="subtype">
-              <mat-option *ngFor="let SubscriptionType of subscription" [value]="SubscriptionType.value">
-                {{SubscriptionType.viewValue}}
+              <mat-option *ngFor="let subType of subscriptionType" [value]="subType.type">
+                {{subType.type}}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -249,7 +237,7 @@
     <mat-card-title>Подписались на рассылку</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <h3 *ngFor="let item of subscriptionsList">
+    <h3 *ngFor="let item of listofsubs | async">
       {{item.email}} | {{item.subtype}}
     </h3>
   </mat-card-content>

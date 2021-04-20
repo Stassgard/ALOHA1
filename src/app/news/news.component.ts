@@ -1,17 +1,12 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NewsService} from "../services/news.service";
 import {FormBuilder, FormControl, Validators, FormGroup} from "@angular/forms";
-import subscriptions from "../news/subscriptions.json";
-import value from '../news/subscriptions.json';
 import { selectNews, areNewsLoaded } from 'src/store/selectors/news.selectors';
 import { NewsState } from 'src/store/reducers/news.reducer';
 import { LoadNews } from 'src/store/actions/news.actions';
 import { Store } from '@ngrx/store';
-
-interface SubscriptionType {
-  value: string;
-  viewValue: string;
-}
+import { HttpClient } from '@angular/common/http';
+import { SubscriptionsService } from '../services/subscriptions.service';
 
 @Component({
   selector: 'app-news',
@@ -25,30 +20,22 @@ export class NewsComponent implements OnInit {
   @Output()
   selectedValue!: string;
   subscriptionForm!: FormGroup;
-  subscriptionsList:{email:string,subtype:string}[]=subscriptions;
-  subscription: SubscriptionType[] = [
-    {value: 'Каждый день', viewValue: 'Каждый день'},
-    {value: 'Один раз в две недели', viewValue: 'Один раз в две недели'},
-    {value: 'Один раз в месяц', viewValue: 'Один раз в месяц'},
-  ];
-
-  //newsData = this.newsService.getNews();
+  
 
   selectNews$ = this.store.select(selectNews);
   areNewsLoaded$ = this.store.select(areNewsLoaded);
 
-  constructor(public newsService: NewsService, private formBuilder:FormBuilder, private store: Store<NewsState>) {}
+  listofsubs = this.subscriptionsService.getSubscriptionList();
+  subscriptionType = this.subscriptionsService.getSubscriptionType();
+
+
+  constructor(public newsService: NewsService, private formBuilder:FormBuilder, private store: Store<NewsState>, private http: HttpClient, public subscriptionsService: SubscriptionsService) {}
 
   ngOnInit(): void {
 
     // Dispatch action
     this.store.dispatch(LoadNews());
 
-    // this.newsService.getNewsAsObs().subscribe(news => {
-    //   console.log(news);
-    // });
-
-    //console.log(this.newsService.getNewsAsObs());
 
     this.subscriptionForm = this.formBuilder.group({
       email: ['', [
@@ -64,29 +51,13 @@ export class NewsComponent implements OnInit {
     return this.subscriptionForm.get('email');
   }
 
-  saveSubscription(){
-    // const SaveJSON = (filename='', json='""') =>{
-    // return this.(filename, JSON.stringify(json))
-    // }
-     
-   this.subscriptionsList.push(this.subscriptionForm.value)
 
-    // SaveJSON('subscriptions.json',this.subscriptionForm.value)
-    
-      console.log(this.subscriptionForm.value);
-  }
+  saveSubscription() {
 
+   this.http.get(this.subscriptionForm.value)
+    console.log(this.subscriptionForm.value);
+  };
+
+  
 
 }
-
-
-// this.someOutput.emit('123');
-    // this.profileForm = new FormGroup({
-    //   firstName: new FormControl(''),
-    //   lastName: new FormControl('')
-    // })
-
-    // emailFormControl = new FormControl('', [
-  //   Validators.required,
-  //   Validators.email,
-  // ]);
