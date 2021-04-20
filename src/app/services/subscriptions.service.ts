@@ -1,11 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import subscriptions from '../../assets/subscriptions.json';
 
 
-@Injectable({
-    providedIn: 'root'
-  })
+
+@Injectable({ providedIn: 'root' })
   export class SubscriptionsService {
+
+    subscriptionsList:{email:string,subtype:string}[]=subscriptions;
 
      getSubscriptionType() {
         return [
@@ -15,14 +17,12 @@ import { Injectable } from '@angular/core';
             ];
         }
 
-  
     constructor(private http: HttpClient) {}
 
-    getSubscriptionList() {
-        return this.http.get<any[]>('/assets/subscriptions.json');
-      }
-
-      
+    // getSubscriptionList() {
+    //     return this.http.get<any[]>('/assets/subscriptions.json');
+    //   }
+    
   }
 
   

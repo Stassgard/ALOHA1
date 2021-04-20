@@ -237,7 +237,7 @@
     <mat-card-title>Подписались на рассылку</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <h3 *ngFor="let item of listofsubs | async">
+    <h3 *ngFor="let item of listofsubs">
       {{item.email}} | {{item.subtype}}
     </h3>
   </mat-card-content>

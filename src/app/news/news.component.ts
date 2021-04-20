@@ -1,6 +1,6 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {NewsService} from "../services/news.service";
-import {FormBuilder, FormControl, Validators, FormGroup} from "@angular/forms";
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { NewsService } from "../services/news.service";
+import { FormBuilder, FormControl, Validators, FormGroup } from "@angular/forms";
 import { selectNews, areNewsLoaded } from 'src/store/selectors/news.selectors';
 import { NewsState } from 'src/store/reducers/news.reducer';
 import { LoadNews } from 'src/store/actions/news.actions';
@@ -21,21 +21,21 @@ export class NewsComponent implements OnInit {
   selectedValue!: string;
   subscriptionForm!: FormGroup;
   
-
   selectNews$ = this.store.select(selectNews);
   areNewsLoaded$ = this.store.select(areNewsLoaded);
 
-  listofsubs = this.subscriptionsService.getSubscriptionList();
+  //listofsubs = this.subscriptionsService.getSubscriptionList();
   subscriptionType = this.subscriptionsService.getSubscriptionType();
+  listofsubs = this.subscriptionsService.subscriptionsList
+  
 
-
-  constructor(public newsService: NewsService, private formBuilder:FormBuilder, private store: Store<NewsState>, private http: HttpClient, public subscriptionsService: SubscriptionsService) {}
+  constructor(public newsService: NewsService, private formBuilder:FormBuilder, private store: Store<NewsState>, 
+    private http: HttpClient, public subscriptionsService: SubscriptionsService) {}
 
   ngOnInit(): void {
 
     // Dispatch action
     this.store.dispatch(LoadNews());
-
 
     this.subscriptionForm = this.formBuilder.group({
       email: ['', [
@@ -51,11 +51,15 @@ export class NewsComponent implements OnInit {
     return this.subscriptionForm.get('email');
   }
 
-
+  
   saveSubscription() {
 
-   this.http.get(this.subscriptionForm.value)
-    console.log(this.subscriptionForm.value);
+    this.listofsubs.push(this.subscriptionForm.value)
+    window.alert('Спасибо что подписались на рассылку!');
+      console.log(this.subscriptionForm.value);
+
+  //  this.http.get(this.subscriptionForm.value)
+  //   console.log(this.subscriptionForm.value);
   };
 
   
