@@ -55,7 +55,7 @@ export class NewsComponent implements OnInit {
   saveSubscription() {
 
     this.listofsubs.push(this.subscriptionForm.value)
-    window.alert('Спасибо что подписались на рассылку!');
+    window.alert('Спасибо что подписались на рассылку!!');
       console.log(this.subscriptionForm.value);
 
   //  this.http.get(this.subscriptionForm.value)
